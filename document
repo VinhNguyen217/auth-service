@@ -1,0 +1,16 @@
+@PostAuthorize : Sau khi xử lý logic xong mới đi kiểm tra quyền -> Thường được sử dụng để kiểm tra xem thông tin user
+trả về có đúng là user đang đăng nhập hay không thì mới trả về -> Xử lý trường User chỉ có thể lấy thông tin của chính mình
+mà thôi
+
+Previlege trong Authorize
+
+User -> many Role -> many Permission
+
+Cài đặt Plugin JPA Buddy trong Intellij để hỗ trợ quản lý các Entity
+
+hasRole -> Tự động gán các giá trị với tiền tố 'ROLE'
+
+Lưu ý : Khi ta lưu quá nhiều thông tin vào token thì kích thước header sẽ nặng lên, trong khi đó kích thước tối thiểu Header
+chỉ tối đa 4kb
+
+Cần có 1 job chạy ngầm để xóa những token đã hết hạn trong bảng InvalidToken
