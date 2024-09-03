@@ -5,7 +5,9 @@ import java.text.ParseException;
 import com.java.auth_service.dto.request.AuthenticationRequest;
 import com.java.auth_service.dto.request.IntrospectRequest;
 import com.java.auth_service.dto.request.LogoutRequest;
+import com.java.auth_service.dto.request.RefreshRequest;
 import com.java.auth_service.dto.response.ApiResponse;
+import com.java.auth_service.dto.response.AuthenticationResponse;
 import com.java.auth_service.service.AuthenticationService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,12 +41,13 @@ public class AuthenticationController {
                 .build();
     }
 
-//    @PostMapping("/refresh")
-//    ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request)
-//            throws ParseException, JOSEException {
-//        var result = authenticationService.refreshToken(request);
-//        return ApiResponse.<AuthenticationResponse>builder().result(result).build();
-//    }
+    @PostMapping("/refresh")
+    ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request)
+            throws ParseException, JOSEException {
+        return ApiResponse.<AuthenticationResponse>builder()
+                .result(authenticationService.refreshToken(request))
+                .build();
+    }
 
     @PostMapping("/logout")
     ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException {

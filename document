@@ -14,3 +14,5 @@ Lưu ý : Khi ta lưu quá nhiều thông tin vào token thì kích thước hea
 chỉ tối đa 4kb
 
 Cần có 1 job chạy ngầm để xóa những token đã hết hạn trong bảng InvalidToken
+
+Refresh Token thường có thời gian hiệu lực lớn hơn token, Điều này giúp tăng trải nghiệm của người dùng
