@@ -32,7 +32,7 @@ public class AuthenticationService {
     UserRepository userRepository;
     InvalidatedTokenRepository invalidatedTokenRepository;
     PasswordEncoder passwordEncoder;
-    JwtService jwtService;
+    JwtTokenProvider jwtTokenProvider;
 
     public IntrospectResponse introspect(IntrospectRequest request)
             throws JOSEException, ParseException {
@@ -40,7 +40,7 @@ public class AuthenticationService {
         boolean isValid = true;
 
         try {
-            jwtService.verifyToken(token, false);
+            jwtTokenProvider.verifyToken(token, false);
         } catch (AppException e) {
             isValid = false;
         }
@@ -59,7 +59,7 @@ public class AuthenticationService {
 
         if (!authenticated) throw new AppException(ErrorCode.UNAUTHENTICATED);
 
-        var token = jwtService.generateToken(user);
+        var token = jwtTokenProvider.generateToken(user);
 
         return AuthenticationResponse.builder()
                 .token(token)
@@ -68,7 +68,7 @@ public class AuthenticationService {
 
     public void logout(LogoutRequest request)
             throws ParseException, JOSEException {
-        var signToken = jwtService.verifyToken(request.getToken(), true);
+        var signToken = jwtTokenProvider.verifyToken(request.getToken(), true);
 
         String jwtID = signToken.getJWTClaimsSet().getJWTID();
         Date expiryTime = signToken.getJWTClaimsSet().getExpirationTime();
@@ -92,7 +92,7 @@ public class AuthenticationService {
     public AuthenticationResponse refreshToken(RefreshRequest request)
             throws ParseException, JOSEException {
         // Xác minh lại Token
-        var signedJWT = jwtService.verifyToken(request.getToken(), true);
+        var signedJWT = jwtTokenProvider.verifyToken(request.getToken(), true);
 
         // Thực hiện lưu token này vào bảng InvalidatedToken
         var jit = signedJWT.getJWTClaimsSet().getJWTID();
@@ -109,7 +109,7 @@ public class AuthenticationService {
                 .orElseThrow(() -> new AppException(ErrorCode.UNAUTHENTICATED));
 
         // Tạo token mới
-        var token = jwtService.generateToken(user);
+        var token = jwtTokenProvider.generateToken(user);
 
         return AuthenticationResponse.builder()
                 .token(token)

@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.Objects;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.java.auth_service.service.JwtService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.java.auth_service.service.JwtTokenProvider;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -17,21 +17,21 @@ import org.springframework.stereotype.Component;
 import com.nimbusds.jose.JOSEException;
 
 @Component
+@RequiredArgsConstructor
 public class CustomJwtDecoder implements JwtDecoder {
     @Value("${jwt.signerKey}")
     private String SIGNER_KEY;
 
     private NimbusJwtDecoder nimbusJwtDecoder = null;
 
-    @Autowired
-    private JwtService jwtService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public Jwt decode(String token) throws JwtException {
 
         try {
             // Verify Token
-            jwtService.verifyToken(token, false);
+            jwtTokenProvider.verifyToken(token, false);
         } catch (JOSEException | ParseException e) {
             throw new JwtException(e.getMessage());
         }

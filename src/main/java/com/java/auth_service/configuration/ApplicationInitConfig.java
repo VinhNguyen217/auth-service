@@ -1,9 +1,12 @@
 package com.java.auth_service.configuration;
 
 import java.util.HashSet;
+import java.util.Set;
 
+import com.java.auth_service.constant.PredefinedRole;
+import com.java.auth_service.entity.Role;
 import com.java.auth_service.entity.User;
-import com.java.auth_service.enums.Role;
+import com.java.auth_service.repo.RoleRepository;
 import com.java.auth_service.repo.UserRepository;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -31,17 +34,19 @@ public class ApplicationInitConfig {
     static final String ADMIN_PASSWORD = "admin";
 
     @Bean
-    ApplicationRunner applicationRunner(UserRepository userRepository) {
+    ApplicationRunner applicationRunner(UserRepository userRepository,
+                                        RoleRepository roleRepository) {
         log.info("Initializing application.....");
         return args -> {
             if (userRepository.findByUsername(ADMIN_USER_NAME).isEmpty()) {
-                var roles = new HashSet<String>();
-                roles.add(Role.ADMIN.name());
+                Role adminRole = roleRepository.save(Role.builder()
+                        .name(PredefinedRole.ADMIN_ROLE)
+                        .build());
 
                 User user = User.builder()
                         .username(ADMIN_USER_NAME)
                         .password(passwordEncoder.encode(ADMIN_PASSWORD))
-//                        .roles(roles)
+                        .roles(Set.of(adminRole))
                         .build();
 
                 userRepository.save(user);

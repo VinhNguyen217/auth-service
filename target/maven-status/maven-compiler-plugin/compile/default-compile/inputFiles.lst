@@ -12,7 +12,9 @@
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/request/RoleRequest.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/request/LogoutRequest.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/response/AuthenticationResponse.java
+/home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/configuration/JwtAuthenticationEntryPoint.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/response/RoleResponse.java
+/home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/configuration/TransactionFilter.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/entity/Permission.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/request/RefreshRequest.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/repo/UserRepository.java
@@ -23,6 +25,7 @@
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/AuthServiceApplication.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/validator/DobConstraint.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/dto/response/ApiResponse.java
+/home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/constant/PredefinedRole.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/repo/InvalidatedTokenRepository.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/entity/User.java
 /home/vinhnd/Documents/project/auth-service/src/main/java/com/java/auth_service/service/RoleService.java

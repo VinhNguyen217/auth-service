@@ -2,6 +2,7 @@ com/java/auth_service/controller/PermissionController.class
 com/java/auth_service/repo/UserRepository.class
 com/java/auth_service/entity/User.class
 com/java/auth_service/entity/InvalidatedToken$InvalidatedTokenBuilder.class
+com/java/auth_service/configuration/JwtAuthenticationEntryPoint.class
 com/java/auth_service/service/PermissionService.class
 com/java/auth_service/controller/UserController.class
 com/java/auth_service/dto/request/UserCreationRequest$UserCreationRequestBuilder.class
@@ -16,8 +17,10 @@ com/java/auth_service/repo/PermissionRepository.class
 com/java/auth_service/dto/request/RefreshRequest.class
 com/java/auth_service/service/JwtService.class
 com/java/auth_service/dto/response/UserResponse.class
+com/java/auth_service/configuration/TransactionFilter.class
 com/java/auth_service/repo/InvalidatedTokenRepository.class
 com/java/auth_service/repo/RoleRepository.class
+com/java/auth_service/constant/PredefinedRole.class
 com/java/auth_service/configuration/SecurityConfig.class
 com/java/auth_service/AuthServiceApplication.class
 com/java/auth_service/dto/request/UserUpdateRequest$UserUpdateRequestBuilder.class
